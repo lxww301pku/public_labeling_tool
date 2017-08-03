@@ -10,7 +10,7 @@
 
 ### 用法
 
-1.准备数据 先按照django教程安装MySQL API dirver，在MySQL上新建一个待使用的数据库`create database db_name character set utf8`，并把数据库信息（用户名，密码，host，port，数据库名)填入`settings.py`的DATABASES中，然后运行`python manage.py migrate`将`models.py`中定义的数据结构导入数据库，最后把excel中待标注的文本导入到该数据库的`sent_text`列``load data infile 'path_to_file' into table classification_sentence terminated by '\n' (`sent_text`)``
+1. 准备数据 先按照django教程安装MySQL API dirver，在MySQL上新建一个待使用的数据库`create database db_name character set utf8`，并把数据库信息（用户名，密码，host，port，数据库名)填入`settings.py`的DATABASES中，然后运行`python manage.py migrate`将`models.py`中定义的数据结构导入数据库，最后把excel中待标注的文本导入到该数据库的`sent_text`列``load data infile 'path_to_file' into table classification_sentence terminated by '\n' (`sent_text`)``
 2. 启动服务 `python manage.py runserver`
 3. domain/intent标注 浏览器地址栏输入`http://127.0.0.1:8000/classification/`进行标注 建议使用空格键确认，左右键选择，tab键跳转，回车键提交，完全脱离鼠标
 4. slots标注 地址栏输入`http://127.0.0.1:8000/slots/`左键选择文本，按键选择tag，点击go按钮使标注数据进入文本框，每行可标注0次或多次，也可直接在文本框内修改，点击submit按钮提交
