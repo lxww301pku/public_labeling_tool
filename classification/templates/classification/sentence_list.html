@@ -1,0 +1,53 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'classification/style.css' %}" />
+<h1>semantic labeling</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if sentence_list %}
+    <form action="{% url 'classification:check' %}" method="post">
+    {% csrf_token %}
+    <table>
+    <tr>
+        <th>Sentence</th>
+        <th>Domain</th>
+        <th>Intent</th>
+    </tr>
+    {% for sent in sentence_list %}
+        <tr>
+            <td>{{sent.sent_text}}</td>
+            <td><input type="radio" name="{{sent.id}}_1" id="dm" value="1" />
+            <label for="dm">music</label>
+            <input type="radio" name="{{sent.id}}_1" id="ds" value="2" />
+            <label for="ds">story</label>
+            <input type="radio" name="{{sent.id}}_1" id="dp" value="3" />
+            <label for="dp">poem</label>
+            <input type="radio" name="{{sent.id}}_1" id="dc" value="4" />
+            <label for="dc">control</label>
+            <input type="radio" name="{{sent.id}}_1" id="do" value="5" />
+            <label for="do">other</label></td>
+            
+            <td><input type="radio" name="{{sent.id}}_2" id="ip" value="1" />
+            <label for="ip">play</label>
+            <input type="radio" name="{{sent.id}}_2" id="ic" value="2" />
+            <label for="ic">chat</label>
+            <input type="radio" name="{{sent.id}}_2" id="id" value="3" />
+            <label for="id">download</label>
+            <input type="radio" name="{{sent.id}}_2" id="is" value="4" />
+            <label for="is">search</label>
+            <input type="radio" name="{{sent.id}}_2" id="ir" value="5" />
+            <label for="ir">recommand</label>
+            
+            <input type="radio" name="{{sent.id}}_2" id="mu" value="6" />
+            <label for="mu">music</label>
+            <input type="radio" name="{{sent.id}}_2" id="st" value="7" />
+            <label for="st">story</label>
+            <input type="radio" name="{{sent.id}}_2" id="po" value="8" />
+            <label for="po">poem</label>
+            <input type="radio" name="{{sent.id}}_2" id="ot" value="9" />
+            <label for="ot">other</label></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <input type="submit" value="Submit" />
+    </form>
+    {% endif %}
